@@ -50,3 +50,17 @@ select sno as '学号', degree as '成绩' from sc where cno = 'C03' order by de
 select cno as '课程号', count(*) as '选课人数' from sc group by cno;
 
 select cno as '课程号', count(*) as '选课人数', max(degree) as '最高分' from sc group by cno;
+
+select sno as '学号', count(cno) as '选课门数', sum(degree) as '总成绩' from sc group by sno order by count(cno) DESC;
+
+select sno as '学号' from sc group by sno having count(cno) > 3;
+
+select sno as '学号', cno as '课程号' from sc where degree < 60 order by degree DESC;
+
+select distinct sno as '学号' from sc;
+
+select sdept as '系名', count(*) as '人数' from student group by sdept;
+
+select sdept as '系名', ssex as '性别', count(*) as '人数' from student group by sdept, ssex;
+
+select speciality as '班级', count(*) as '人数' from student group by speciality;
