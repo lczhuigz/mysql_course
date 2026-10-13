@@ -64,3 +64,11 @@ select sdept as '系名', count(*) as '人数' from student group by sdept;
 select sdept as '系名', ssex as '性别', count(*) as '人数' from student group by sdept, ssex;
 
 select speciality as '班级', count(*) as '人数' from student group by speciality;
+
+select tdept as '所在院系', count(*) as '教师人数' from teacher group by tdept order by count(*) ASC;
+
+select cno as '课程号' from sc where degree < 60 group by cno having count(*) > 10;
+
+select cno as '课程号' from sc group by cno having count(*) > 10;
+
+select * from student where ssex = '男' and sdept = '软件系' order by sbirthday ASC, saddress DESC; 
