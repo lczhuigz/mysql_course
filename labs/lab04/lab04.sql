@@ -1,5 +1,7 @@
 use db_school;
 
+-- 数据更新操作练习
+
 insert into Student (sno, sname, sbirthday, ssex, sdept, speciality) 
 values('20050203', '张静', '1981-03-21', '女', 'CS', '电子商务');
 
@@ -22,6 +24,8 @@ delete from sc where degree is NULL;
 
 delete from sc where sno in (select sno from student where sname = '张晨');
 
+-- 数据表索引和约束的练习
+
 create table writers (
     id int(10) not null,
     w_name varchar(20) not null,
@@ -31,3 +35,11 @@ create table writers (
     primary key (id),
     unique index uniquex (id)
 );
+
+create index multiidx on writers(w_address, w_age);
+
+create index ftidx on writers(w_name); 
+alter table writers drop index ftidx;
+
+create index nameidx on writers(w_name);
+drop index nameidx on writers;
