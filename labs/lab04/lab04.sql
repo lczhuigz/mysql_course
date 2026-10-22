@@ -43,3 +43,23 @@ alter table writers drop index ftidx;
 
 create index nameidx on writers(w_name);
 drop index nameidx on writers;
+
+-- 视图的管理
+
+create view sc_view1 as select * from sc where degree > 90;
+
+create view sc_view2 as select sno, cno, degree from sc where degree < 80; 
+
+create view sc_view3 as select s.sname, c.cname, sc.degree from student s join sc on s.sno = sc.sno join course c on sc.cno = c.cno where s.speciality = '20070303';
+
+create view sc_view4 as select * from sc_view1 where cno = 'C01';
+
+alter view sc_view1 as select sc.* from sc join teaching t on sc.cno = t.cno where sc.degree > 90 and t.cterm = 3;
+
+drop view sc_view1;
+
+select * from sc_view2 where sno = '2007030125' and cno = 'A01';
+
+update sc_view2 set degree = '87' where sno = '2007030122' and cno = 'c02';
+
+delete from sc_view2 where sno = '2007030123' and cno = 'a01';
